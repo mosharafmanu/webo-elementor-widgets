@@ -1,0 +1,51 @@
+.webo-demo-card {
+	padding: 32px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 24px;
+	background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+	box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+	color: #ffffff;
+}
+
+.webo-demo-card__badge {
+	display: inline-flex;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.12);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.webo-demo-card__title {
+	margin: 16px 0 12px;
+	color: #ffffff;
+	font-size: 32px;
+	line-height: 1.2;
+}
+
+.webo-demo-card__description {
+	color: rgba(255, 255, 255, 0.82);
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+.webo-demo-card__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	padding: 12px 20px;
+	border-radius: 999px;
+	background: #ffffff;
+	color: #111827;
+	font-weight: 700;
+	text-decoration: none;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.webo-demo-card__button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px rgba(255, 255, 255, 0.18);
+}

@@ -1,0 +1,15 @@
+
+.webo-testimonial-card__slide {
+  height: 760px;
+  display: grid !important;
+  grid-template-columns: 100%;
+}
+.webo-testimonial-card__slide > * {
+  grid-column: 1;
+  grid-row: 1;
+}
+.webo-testimonial-card__image img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
