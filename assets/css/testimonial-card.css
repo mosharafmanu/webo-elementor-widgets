@@ -63,7 +63,7 @@
 	display: flex;
 	justify-content: end;
 }
-.webo-home-blog__nav-button span,
+.webo-category-posts-showcase__nav-button span,
 .webo-testimonial-card__arrow span {
 	display: flex;
 	padding: 14px 11px;
