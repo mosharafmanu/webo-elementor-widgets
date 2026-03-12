@@ -15,7 +15,7 @@
 }
 
 .webo-home-blog__track.slick-initialized .slick-slide {
-	padding: 0 9px;
+	padding: 0 15px;
 }
 
 .webo-home-blog__item,
@@ -27,7 +27,7 @@
 .webo-home-blog__card {
 	position: relative;
 	overflow: hidden;
-	min-height: 330px;
+	min-height: 588px;
 	border-radius: 2px;
 	background: #111827;
 }
@@ -39,7 +39,7 @@
 	inset: 0;
 }
 
-.webo-home-blog__image-tag {
+img.webo-home-blog__image-tag {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -59,8 +59,8 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	min-height: 330px;
-	padding: 22px 24px 24px;
+	min-height: 588px;
+	padding: 22px 50px 42px;
 	color: #ffffff;
 }
 
@@ -76,7 +76,8 @@
 .webo-home-blog__title {
 	max-width: 78%;
 	margin: 0;
-	font-size: clamp(1.75rem, 2.5vw, 2.125rem);
+	/* font-size: clamp(1.75rem, 2.5vw, 2.125rem); */
+	font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
 	font-weight: 700;
 	line-height: 1.05;
 	letter-spacing: -0.03em;
@@ -89,13 +90,14 @@
 
 .webo-home-blog__cta {
 	position: absolute;
-	right: 22px;
-	bottom: 22px;
+	right: 50px;
+	bottom: 50px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 34px;
-	height: 24px;
+	width: 40px;
+	height: 40px;
+	padding: 12px 9px;
 	border: 1px solid rgba(255, 255, 255, 0.6);
 	border-radius: 3px;
 	background: rgba(255, 255, 255, 0.08);

@@ -1,6 +1,6 @@
 
 .webo-testimonial-card__slide {
-  height: 760px;
+  height: 662px;
   display: grid !important;
   grid-template-columns: 100%;
 }
@@ -12,4 +12,83 @@
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+}
+
+.webo-testimonial-card__image {
+	position: relative;
+}
+.webo-testimonial-card__image::after{
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #100A0A;
+	z-index: 0;
+	opacity: .5;
+}
+.webo-testimonial-card__heading {
+	color: #fff;
+	margin-top: -8px;
+}
+.webo-testimonial-card__body {
+	margin-top: auto;
+	color: #ffff;
+}
+.webo-testimonial-card__panel {
+	display: flex;
+	flex-direction: column;
+	padding: 41px;
+	z-index: 2;
+}
+.webo-testimonial-card__quote p {
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 26px;
+}
+.webo-testimonial-card__meta {
+	margin-top: 21px;
+}
+.webo-testimonial-card__name {
+	font-weight: 700;
+	line-height: 23px;
+	margin-bottom: -6px;
+}
+.webo-testimonial-card__navigation {
+	margin-top: 23px;
+}
+.webo-testimonial-card__arrows {
+	column-gap: 13px;
+	display: flex;
+	justify-content: end;
+}
+.webo-home-blog__nav-button span,
+.webo-testimonial-card__arrow span {
+	display: flex;
+	padding: 14px 11px;
+}
+.webo-testimonial-card__arrow {
+	border: none;
+}
+[type="button"]:focus, 
+[type="button"]:hover, 
+[type="submit"]:focus, 
+[type="submit"]:hover, 
+.webo-testimonial-card__arrows button:focus, 
+.webo-testimonial-card__arrows button:hover {
+	background-color: #0F111AE6;
+	color: #fff;
+	text-decoration: none;
+}
+.webo-testimonial-card__arrows button{
+	background-color: #0f111a66;
+	color: #fff;
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 767px){
+	.webo-testimonial-card__slide {
+		height: 450px;
+	}
 }
