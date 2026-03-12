@@ -77,7 +77,7 @@ img.webo-home-blog__image-tag {
 	max-width: 78%;
 	margin: 0;
 	/* font-size: clamp(1.75rem, 2.5vw, 2.125rem); */
-	font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
+	font-size: clamp(1.5rem, 2.5vw, 2.25rem) !important;
 	font-weight: 700;
 	line-height: 1.05;
 	letter-spacing: -0.03em;
