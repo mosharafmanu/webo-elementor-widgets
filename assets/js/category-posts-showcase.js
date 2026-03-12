@@ -1,14 +1,14 @@
 (function ($) {
 	'use strict';
 
-	function initHomeBlogWidget($scope) {
-		var $widget = $scope.find('.webo-home-blog').first();
+	function initCategoryPostsShowcaseWidget($scope) {
+		var $widget = $scope.find('.webo-category-posts-showcase').first();
 
 		if (!$widget.length) {
 			return;
 		}
 
-		var $track = $widget.find('.webo-home-blog__track');
+		var $track = $widget.find('.webo-category-posts-showcase__track');
 		var enableCarousel = $widget.data('carousel') === 'yes';
 
 		if ($track.hasClass('slick-initialized')) {
@@ -23,8 +23,8 @@
 			slidesToShow: parseInt($widget.data('slides-desktop'), 10) || 2,
 			slidesToScroll: 1,
 			arrows: $widget.data('arrows') === 'yes',
-			prevArrow: $widget.find('.webo-home-blog__nav-button--prev'),
-			nextArrow: $widget.find('.webo-home-blog__nav-button--next'),
+			prevArrow: $widget.find('.webo-category-posts-showcase__nav-button--prev'),
+			nextArrow: $widget.find('.webo-category-posts-showcase__nav-button--next'),
 			speed: parseInt($widget.data('speed'), 10) || 500,
 			infinite: $widget.data('infinite') === 'yes',
 			dots: false,
@@ -48,6 +48,6 @@
 	}
 
 	$(window).on('elementor/frontend/init', function () {
-		elementorFrontend.hooks.addAction('frontend/element_ready/webo-home-blog-widget.default', initHomeBlogWidget);
+		elementorFrontend.hooks.addAction('frontend/element_ready/webo-category-posts-showcase.default', initCategoryPostsShowcaseWidget);
 	});
 }(jQuery));

@@ -9,13 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Home_Blog_Widget extends Widget_Base {
+class Category_Posts_Showcase_Widget extends Widget_Base {
 	public function get_name(): string {
-		return 'webo-home-blog-widget';
+		return 'webo-category-posts-showcase';
 	}
 
 	public function get_title(): string {
-		return esc_html__( 'Webo Home Blog', 'webo-elementor-widgets' );
+		return esc_html__( 'Webo Category Posts Showcase', 'webo-elementor-widgets' );
 	}
 
 	public function get_icon(): string {
@@ -27,15 +27,15 @@ class Home_Blog_Widget extends Widget_Base {
 	}
 
 	public function get_keywords(): array {
-		return [ 'webo', 'blog', 'news', 'posts', 'carousel' ];
+		return [ 'webo', 'category', 'posts', 'showcase', 'carousel' ];
 	}
 
 	public function get_style_depends(): array {
-		return [ 'webo-home-blog-widget' ];
+		return [ 'webo-category-posts-showcase' ];
 	}
 
 	public function get_script_depends(): array {
-		return [ 'webo-home-blog-widget' ];
+		return [ 'webo-category-posts-showcase' ];
 	}
 
 	protected function register_controls(): void {
@@ -53,6 +53,20 @@ class Home_Blog_Widget extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'options' => $this->get_post_type_options(),
 				'default' => 'post',
+			]
+		);
+
+		$this->add_control(
+			'categories',
+			[
+				'label'       => esc_html__( 'Categories', 'webo-elementor-widgets' ),
+				'type'        => Controls_Manager::SELECT2,
+				'options'     => $this->get_category_options(),
+				'multiple'    => true,
+				'label_block' => true,
+				'condition'   => [
+					'post_type' => 'post',
+				],
 			]
 		);
 
@@ -198,7 +212,7 @@ class Home_Blog_Widget extends Widget_Base {
 		$this->add_render_attribute(
 			'wrapper',
 			[
-				'class'               => 'webo-home-blog',
+				'class'               => 'webo-category-posts-showcase',
 				'data-carousel'       => $enable_carousel ? 'yes' : 'no',
 				'data-arrows'         => $show_arrows ? 'yes' : 'no',
 				'data-speed'          => (string) ( ! empty( $settings['speed'] ) ? absint( $settings['speed'] ) : 500 ),
@@ -208,9 +222,17 @@ class Home_Blog_Widget extends Widget_Base {
 				'data-slides-mobile'  => (string) $this->get_slides_to_show( $settings, 'mobile' ),
 			]
 		);
+
+		$this->add_render_attribute(
+			'track',
+			'class',
+			$enable_carousel
+				? [ 'webo-category-posts-showcase__track', 'itemMargin', 'stagePaddingRight' ]
+				: 'webo-category-posts-showcase__track'
+		);
 		?>
 		<section <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-			<div class="webo-home-blog__track">
+				<div <?php $this->print_render_attribute_string( 'track' ); ?>>
 				<?php while ( $query->have_posts() ) : ?>
 					<?php $query->the_post(); ?>
 					<?php $this->render_post_card( get_post() ); ?>
@@ -218,11 +240,11 @@ class Home_Blog_Widget extends Widget_Base {
 			</div>
 
 			<?php if ( $show_arrows ) : ?>
-				<div class="webo-home-blog__nav">
-					<button class="webo-home-blog__nav-button webo-home-blog__nav-button--prev" type="button" aria-label="<?php echo esc_attr__( 'Previous posts', 'webo-elementor-widgets' ); ?>">
+					<div class="webo-category-posts-showcase__nav">
+						<button class="webo-category-posts-showcase__nav-button webo-category-posts-showcase__nav-button--prev" type="button" aria-label="<?php echo esc_attr__( 'Previous posts', 'webo-elementor-widgets' ); ?>">
 						<span aria-hidden="true"><?php echo $this->get_svg_icon_markup( 'long-arrow-left' ); ?></span>
 					</button>
-					<button class="webo-home-blog__nav-button webo-home-blog__nav-button--next" type="button" aria-label="<?php echo esc_attr__( 'Next posts', 'webo-elementor-widgets' ); ?>">
+						<button class="webo-category-posts-showcase__nav-button webo-category-posts-showcase__nav-button--next" type="button" aria-label="<?php echo esc_attr__( 'Next posts', 'webo-elementor-widgets' ); ?>">
 						<span aria-hidden="true"><?php echo $this->get_svg_icon_markup( 'long-arrow-right' ); ?></span>
 					</button>
 				</div>
@@ -240,7 +262,7 @@ class Home_Blog_Widget extends Widget_Base {
 			$post,
 			'full',
 			[
-				'class'    => 'webo-home-blog__image-tag',
+				'class'    => 'webo-category-posts-showcase__image-tag',
 				'loading'  => 'lazy',
 				'decoding' => 'async',
 			]
@@ -248,30 +270,30 @@ class Home_Blog_Widget extends Widget_Base {
 
 		if ( '' === $featured_image ) {
 			$featured_image = sprintf(
-				'<img class="webo-home-blog__image-tag" src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
+				'<img class="webo-category-posts-showcase__image-tag" src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
 				esc_url( Utils::get_placeholder_image_src() ),
 				esc_attr( get_the_title( $post ) )
 			);
 		}
 		?>
-		<article class="webo-home-blog__item">
-			<div class="webo-home-blog__card">
-				<a class="webo-home-blog__image" href="<?php echo esc_url( $permalink ); ?>" aria-label="<?php echo esc_attr( get_the_title( $post ) ); ?>">
+		<article class="webo-category-posts-showcase__item">
+			<div class="webo-category-posts-showcase__card">
+				<a class="webo-category-posts-showcase__image" href="<?php echo esc_url( $permalink ); ?>" aria-label="<?php echo esc_attr( get_the_title( $post ) ); ?>">
 					<?php echo wp_kses_post( $featured_image ); ?>
 				</a>
 
-				<div class="webo-home-blog__overlay"></div>
+				<div class="webo-category-posts-showcase__overlay"></div>
 
-				<div class="webo-home-blog__content">
+				<div class="webo-category-posts-showcase__content">
 					<?php if ( '' !== $label ) : ?>
-						<div class="webo-home-blog__label">/ <?php echo esc_html( $label ); ?> /</div>
+						<div class="webo-category-posts-showcase__label">/ <?php echo esc_html( $label ); ?> /</div>
 					<?php endif; ?>
 
-					<h3 class="webo-home-blog__title">
+					<h3 class="webo-category-posts-showcase__title">
 						<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( get_the_title( $post ) ); ?></a>
 					</h3>
 
-					<a class="webo-home-blog__cta" href="<?php echo esc_url( $permalink ); ?>" aria-label="<?php echo esc_attr( get_the_title( $post ) ); ?>">
+					<a class="webo-category-posts-showcase__cta" href="<?php echo esc_url( $permalink ); ?>" aria-label="<?php echo esc_attr( get_the_title( $post ) ); ?>">
 						<span aria-hidden="true"><?php echo $this->get_svg_icon_markup( 'long-arrow-right' ); ?></span>
 					</a>
 				</div>
@@ -282,11 +304,12 @@ class Home_Blog_Widget extends Widget_Base {
 
 	private function get_query_args( array $settings ): array {
 		$post_type      = ! empty( $settings['post_type'] ) ? sanitize_key( $settings['post_type'] ) : 'post';
+		$categories     = ! empty( $settings['categories'] ) && is_array( $settings['categories'] ) ? array_filter( array_map( 'absint', $settings['categories'] ) ) : [];
 		$posts_per_page = ! empty( $settings['posts_per_page'] ) ? absint( $settings['posts_per_page'] ) : 6;
 		$orderby        = ! empty( $settings['orderby'] ) ? sanitize_key( $settings['orderby'] ) : 'date';
 		$order          = ! empty( $settings['order'] ) ? strtoupper( sanitize_key( $settings['order'] ) ) : 'DESC';
 
-		return [
+		$args = [
 			'post_type'           => $post_type,
 			'posts_per_page'      => $posts_per_page,
 			'orderby'             => $orderby,
@@ -295,6 +318,12 @@ class Home_Blog_Widget extends Widget_Base {
 			'ignore_sticky_posts' => true,
 			'no_found_rows'       => true,
 		];
+
+		if ( 'post' === $post_type && ! empty( $categories ) ) {
+			$args['category__in'] = $categories;
+		}
+
+		return $args;
 	}
 
 	private function get_post_type_options(): array {
@@ -307,6 +336,26 @@ class Home_Blog_Widget extends Widget_Base {
 			}
 
 			$options[ $slug ] = $post_type->labels->singular_name;
+		}
+
+		return $options;
+	}
+
+	private function get_category_options(): array {
+		$options    = [];
+		$categories = get_terms(
+			[
+				'taxonomy'   => 'category',
+				'hide_empty' => false,
+			]
+		);
+
+		if ( is_wp_error( $categories ) || empty( $categories ) ) {
+			return $options;
+		}
+
+		foreach ( $categories as $category ) {
+			$options[ $category->term_id ] = $category->name;
 		}
 
 		return $options;

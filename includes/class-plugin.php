@@ -112,8 +112,8 @@ final class Plugin {
 		);
 
 		wp_register_style(
-			'webo-home-blog-widget',
-			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/css/home-blog-widget.css',
+			'webo-category-posts-showcase',
+			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/css/category-posts-showcase.css',
 			[ 'elementor-frontend' ],
 			WEBO_ELEMENTOR_WIDGETS_VERSION
 		);
@@ -144,8 +144,8 @@ final class Plugin {
 		);
 
 		wp_register_script(
-			'webo-home-blog-widget',
-			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/js/home-blog-widget.js',
+			'webo-category-posts-showcase',
+			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/js/category-posts-showcase.js',
 			[ 'jquery' ],
 			WEBO_ELEMENTOR_WIDGETS_VERSION,
 			true
@@ -155,11 +155,11 @@ final class Plugin {
 	public function register_widgets( Widgets_Manager $widgets_manager ): void {
 		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/class-demo-widget.php';
 		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/class-testimonial-card-widget.php';
-		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/class-home-blog-widget.php';
+		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/category-posts-showcase.php';
 
 		$widgets_manager->register( new Widgets\Demo_Widget() );
 		$widgets_manager->register( new Widgets\Testimonial_Card_Widget() );
-		$widgets_manager->register( new Widgets\Home_Blog_Widget() );
+		$widgets_manager->register( new Widgets\Category_Posts_Showcase_Widget() );
 	}
 
 	private function register_optional_style( string $handle, array $relative_paths ): void {
