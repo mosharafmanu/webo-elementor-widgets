@@ -64,36 +64,6 @@ final class Plugin {
 		];
 
 		$elements_manager->add_category( 'webo-widgets', $category );
-		$this->move_category_after( $elements_manager, 'webo-widgets', $category, 'basic' );
-	}
-
-	private function move_category_after( Elements_Manager $elements_manager, string $category_name, array $category, string $after_category ): void {
-		$categories = $elements_manager->get_categories();
-
-		if ( isset( $categories[ $category_name ] ) ) {
-			$category = $categories[ $category_name ];
-			unset( $categories[ $category_name ] );
-		}
-
-		$category_keys   = array_keys( $categories );
-		$anchor_position = array_search( $after_category, $category_keys, true );
-
-		if ( false === $anchor_position ) {
-			$reordered_categories = array_merge(
-				[ $category_name => $category ],
-				$categories
-			);
-		} else {
-			$before_anchor = array_slice( $categories, 0, $anchor_position + 1, true );
-			$after_anchor  = array_slice( $categories, $anchor_position + 1, null, true );
-
-			$reordered_categories = $before_anchor + [ $category_name => $category ] + $after_anchor;
-		}
-
-		$reflection = new \ReflectionClass( $elements_manager );
-		$property   = $reflection->getProperty( 'categories' );
-		$property->setAccessible( true );
-		$property->setValue( $elements_manager, $reordered_categories );
 	}
 
 	public function register_styles(): void {
@@ -114,6 +84,13 @@ final class Plugin {
 		wp_register_style(
 			'webo-category-posts-showcase',
 			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/css/category-posts-showcase.css',
+			[ 'elementor-frontend' ],
+			WEBO_ELEMENTOR_WIDGETS_VERSION
+		);
+
+		wp_register_style(
+			'webo-hotspot-popup',
+			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/css/hotspot-popup.css',
 			[ 'elementor-frontend' ],
 			WEBO_ELEMENTOR_WIDGETS_VERSION
 		);
@@ -150,16 +127,26 @@ final class Plugin {
 			WEBO_ELEMENTOR_WIDGETS_VERSION,
 			true
 		);
+
+		wp_register_script(
+			'webo-hotspot-popup',
+			WEBO_ELEMENTOR_WIDGETS_URL . 'assets/js/hotspot-popup.js',
+			[ 'jquery' ],
+			WEBO_ELEMENTOR_WIDGETS_VERSION,
+			true
+		);
 	}
 
 	public function register_widgets( Widgets_Manager $widgets_manager ): void {
 		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/class-demo-widget.php';
 		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/class-testimonial-card-widget.php';
 		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/category-posts-showcase.php';
+		require_once WEBO_ELEMENTOR_WIDGETS_PATH . 'includes/widgets/class-hotspot-popup-widget.php';
 
 		$widgets_manager->register( new Widgets\Demo_Widget() );
 		$widgets_manager->register( new Widgets\Testimonial_Card_Widget() );
 		$widgets_manager->register( new Widgets\Category_Posts_Showcase_Widget() );
+		$widgets_manager->register( new Widgets\Hotspot_Popup_Widget() );
 	}
 
 	private function register_optional_style( string $handle, array $relative_paths ): void {

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WEBO_ELEMENTOR_WIDGETS_VERSION', '1.0.0' );
+define( 'WEBO_ELEMENTOR_WIDGETS_VERSION', '1.0.1' );
 define( 'WEBO_ELEMENTOR_WIDGETS_FILE', __FILE__ );
 define( 'WEBO_ELEMENTOR_WIDGETS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WEBO_ELEMENTOR_WIDGETS_URL', plugin_dir_url( __FILE__ ) );

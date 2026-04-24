@@ -157,18 +157,31 @@ img.webo-category-posts-showcase__image-tag {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 24px;
-	height: 20px;
+	width: 46px;
+	height: 46px;
 	border: 0;
 	border-radius: 2px;
-	background: #071229;
+	background: #0f111a66;
 	color: #ffffff;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .webo-category-posts-showcase__nav-button--prev {
 	background: #d8d8d8;
 	color: #ffffff;
+}
+
+.webo-category-posts-showcase__nav-button span {
+	display: flex;
+	padding: 14px 11px;
+}
+
+.webo-category-posts-showcase__nav .webo-category-posts-showcase__nav-button:focus,
+.webo-category-posts-showcase__nav .webo-category-posts-showcase__nav-button:hover {
+	background-color: #0f111ae6;
+	color: #fff;
+	text-decoration: none;
 }
 
 .webo-category-posts-showcase__nav-button.slick-disabled {
