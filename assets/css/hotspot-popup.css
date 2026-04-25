@@ -24,7 +24,6 @@
 	min-height: inherit;
 	padding: 78px 5.3% 90px;
 }
-
 .webo-hotspot-popup__title-wrap {
 	display: flex;
 	align-items: center;
@@ -73,23 +72,40 @@
 .webo-hotspot-popup__item.is-active {
 	z-index: 5;
 }
-
 .webo-hotspot-popup__trigger {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 26px;
-	height: 26px;
-	padding: 0;
-	border: 3px solid rgba(255, 255, 255, 0.9);
-	border-radius: 5px;
-	background: rgba(255, 255, 255, 0.12);
-	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
-	cursor: pointer;
-	transition: background-color 0.2s ease, border-color 0.2s ease;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  background-color: #fff !important;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-
+.webo-hotspot-popup__trigger:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  top: 50%;
+  border: 1px solid #fff;
+  left: 50%;
+  transform: translate(-50%,-50%);
+   border-radius: 10px;
+}
+@media only screen and (max-width:991px) {
+.webo-hotspot-popup__trigger:before {
+  width: 28px;
+  height: 28px;
+}
+.webo-hotspot-popup__trigger {
+  width: 18px;
+  height: 18px;
+}	
+}
 .webo-hotspot-popup__trigger:hover,
 .webo-hotspot-popup__trigger:focus,
 .webo-hotspot-popup__item.is-active .webo-hotspot-popup__trigger {
@@ -127,7 +143,7 @@
 	position: absolute;
 	top: 50%;
 	left: calc(100% + 24px);
-	width: min(250px, calc(100vw - 40px));
+	width: min(260px, calc(100vw - 40px));
 	padding: 44px 24px 18px;
 	background: #ffffff;
 	box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
@@ -146,23 +162,26 @@
 
 .webo-hotspot-popup__close {
 	position: absolute;
-	top: 12px;
-	right: 10px;
-	width: 18px;
-	height: 18px;
+	top: 18px;
+	right: 15px;
+	width: 22px;
+	height: 22px;
 	padding: 0;
 	border: 0;
 	background: transparent;
 	color: #1d70b7;
 	cursor: pointer;
 }
-
+.webo-hotspot-popup__close {
+	color: #066BB1 !important;
+	background: transparent !important;
+}
 .webo-hotspot-popup__close::before,
 .webo-hotspot-popup__close::after {
 	position: absolute;
 	top: 8px;
 	left: 2px;
-	width: 14px;
+	width: 22px;
 	height: 1px;
 	background: currentColor;
 	content: "";
@@ -179,9 +198,9 @@
 .webo-hotspot-popup__card-title {
 	margin: 0 0 8px;
 	color: #141820;
-	font-size: 16px;
+	font-size: 19px !important;
 	font-weight: 700;
-	line-height: 1.25;
+	line-height: 26px !important;
 	letter-spacing: 0;
 }
 
@@ -195,6 +214,8 @@
 
 .webo-hotspot-popup__card-text p {
 	margin: 0;
+	font-size: 15px;
+	line-height: 23px;
 }
 
 .webo-hotspot-popup__card-text p + p {
@@ -336,9 +357,8 @@
 
 	.webo-hotspot-popup__mobile-panel {
 		display: none;
-		padding: 0 18px 18px 54px;
-	}
-
+		padding: 12px 25px 18px 38px;
+}
 	.webo-hotspot-popup__mobile-item.is-active .webo-hotspot-popup__mobile-panel {
 		display: block;
 	}
